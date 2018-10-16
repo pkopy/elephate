@@ -14,17 +14,17 @@
 
         }
         
-        fetch('http://localhost:3000?mama=true').then(res => res.json()).then(data => {
+        fetch('http://localhost:3000?site=http://angular.io').then(res => res.json()).then(data => {
             x = data
-            console.log(x)
+            console.log(data)
             const img = document.createElement('img');
             img.className = 'imgJS'
             const body = document.querySelector('body')
-            img.src = x.dataJS.imgSrc
+            img.src = x[Object.keys(x)[0]].imgSrc
             body.appendChild(img)
                 let count = 0
 
-            for (let a of x.dataJS.href) {
+            for (let a of x[Object.keys(x)[0]].href) {
                 const ah = document.createElement('a')
                 const body = document.querySelector('body')
                 ah.href = a
@@ -34,6 +34,7 @@
             }
 
         })
+        
         
     </script>
 </body>
