@@ -10,10 +10,11 @@ const url = require('url')
 // const x = test.test()
 
 const puppeteer = require('puppeteer');
-const data = {
+const sites = ["http://angular.io", "http://youtube.com", "http://onet.pl", "http://nytimes.com",
+"http://wp.pl", "http://wpengine.com"
+]
+const data = {}
 
-
-}
 
 
 
@@ -29,16 +30,12 @@ app.get('/', (req, res) => {
     let test = url.parse(req.url, true).query
 
     const page = await browser.newPage();
-    // test.mama === 'true'?await page.setJavaScriptEnabled(true):await page.setJavaScriptEnabled(false)
-
-    // await page.setRequestInterceptionEnabled(true)
-
+    
     const reg = /\./g
     reg.test(test.site)
     let name = test.site.slice(7, reg.lastIndex - 1)
 
 
-    // page.on('request', intercepted => intercepted.continue())
     await page.setJavaScriptEnabled(true)
     data[name] = {}
     await page.goto(test.site, {
@@ -62,18 +59,6 @@ app.get('/', (req, res) => {
     });
     data[name].imgSrcWithoutJS = `http://localhost:3000/${name}_without_JS.png`
 
-
-    // console.log(divs)
-
-    // console.log(divs)
-    console.log('page load DONE')
-    // if(test.mama === 'true') {
-    //   await page.screenshot({path: 'public/example_with_JS.png'});
-    //   data.imgSrc = 'http://localhost:3000/example_with_JS.png'
-    // }else {
-    //   await page.screenshot({path: 'public/example_without_JS.png'});
-    //   data.imgSrc = 'http://localhost:3000/example_without_JS.png'
-    // }
     await browser.close();
 
   })().then(() => JSON.stringify(data)).then(data => {
