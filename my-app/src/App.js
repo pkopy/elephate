@@ -3,6 +3,10 @@ import logo from './elephate-ico-gold.svg';
 import './App.css';
 
 class App extends Component {
+  state = {
+    data: {}
+  }
+  
   render() {
     return (
       <div className="App">
