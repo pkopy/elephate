@@ -10,8 +10,13 @@ const url = require('url')
 // const x = test.test()
 
 const puppeteer = require('puppeteer');
-const sites = ['http://wpengine.com', "http://angular.io", "http://youtube.com", "http://onet.pl", "http://nytimes.com", "http://wp.pl"]
-const data = {}
+const sites = ['http://wpengine.com', 
+  "http://angular.io", 
+  "http://youtube.com", 
+  "http://onet.pl", 
+  "http://nytimes.com", 
+  "http://wp.pl"]
+let data = []
 // const sites = ['http://wpengine.com']
 // 
 
@@ -19,8 +24,9 @@ const data = {}
 app.use(cors())
 app.use(express.static('public'))
 app.get('/', (req, res) => {
-
+  data = [];
   (async () => {
+    
     for (let site of sites) {
       const browser = await puppeteer.launch()
       //   {
@@ -36,30 +42,31 @@ app.get('/', (req, res) => {
       reg.test(site)
       let name = site.slice(7, reg.lastIndex - 1)
 
-
+      
       await page.setJavaScriptEnabled(true)
-      data[name] = {}
+      obj = {}
+      obj.name = name;
       await page.goto(site, {
         timeout: 50000
       }).catch(err => console.log(err))
-      await page.$$eval('a', divs => divs.length).then((x) => data[name].numb = x);
-      await page.$$eval('a', el => el.map(n => n.href)).then(x => data[name].href = x)
+      await page.$$eval('a', divs => divs.length).then(x => obj.numb = x);
+      await page.$$eval('a', el => el.map(n => n.href)).then(x => obj.href = x)
       await page.screenshot({
         path: `public/${name}_with_JS.png`
       });
-      data[name].imgSrc = `http://localhost:3000/${name}_with_JS.png`
+      obj.imgSrc = `http://localhost:3000/${name}_with_JS.png`
 
       await page.setJavaScriptEnabled(false)
       await page.goto(site, {
         timeout: 50000
       })
-      await page.$$eval('a', divs => divs.length).then((x) => data[name].numbWithoutJS = x);
-      await page.$$eval('a', el => el.map(n => n.href)).then(x => data[name].hrefWithoutJS = x)
+      await page.$$eval('a', divs => divs.length).then(x => obj.numbWithoutJS = x);
+      await page.$$eval('a', el => el.map(n => n.href)).then(x => obj.hrefWithoutJS = x)
       await page.screenshot({
         path: `public/${name}_without_JS.png`
       });
-      data[name].imgSrcWithoutJS = `http://localhost:3000/${name}_without_JS.png`
-
+      obj.imgSrcWithoutJS = `http://localhost:3000/${name}_without_JS.png`
+      data.push(obj)
       await browser.close();
 
     }
@@ -71,7 +78,7 @@ app.get('/', (req, res) => {
     res.send(data)
   })
   // .catch(err => console.log(err));
-
+  
 })
 
 app.get('/test', (req, res) => {

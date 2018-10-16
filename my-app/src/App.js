@@ -4,7 +4,13 @@ import './App.css';
 
 class App extends Component {
   state = {
-    data: {}
+    data: []
+  }
+
+  getData = () => {
+    this.setState({data:[]})
+    fetch('http://localhost:3000/').then(res => res.json())
+    .then(dataRes => this.setState({data:dataRes}))
   }
   
   render() {
@@ -14,6 +20,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           
         </header>
+        <div className="button" onClick={this.getData}>Get data</div>
 
       </div>
     );
