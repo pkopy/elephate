@@ -54,6 +54,21 @@
   box-shadow: -1px 1px 14px rebeccapurple;
   cursor: pointer;
 }
+.loader {
+  animation: loader infinite 1s;
+  background: #617eb9;
+  width:30px;
+  height:30px;
+  position: relative;
+}
+
+@keyframes loader {
+  0%   { background: red;left:100px;}
+     
+    50%  { background: blue;left:200px;}
+    100%  { background: green;left:100px; }
+    
+}
 
 
 
