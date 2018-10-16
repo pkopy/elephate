@@ -10,9 +10,7 @@ const url = require('url')
 // const x = test.test()
 
 const puppeteer = require('puppeteer');
-const sites = ["http://angular.io", "http://youtube.com", "http://onet.pl", "http://nytimes.com",
-"http://wp.pl", "http://wpengine.com"
-]
+const sites = ["http://angular.io", "http://youtube.com", "http://onet.pl", "http://nytimes.com", "http://wp.pl"]
 const data = {}
 
 
@@ -21,7 +19,9 @@ const data = {}
 app.use(cors())
 app.use(express.static('public'))
 app.get('/', (req, res) => {
+  
   (async () => {
+    for(let site of sites){
     const browser = await puppeteer.launch()
     //   {
     //   ignoreHTTPSErrors: true,
@@ -29,16 +29,17 @@ app.get('/', (req, res) => {
     // })
     let test = url.parse(req.url, true).query
 
-    const page = await browser.newPage();
     
-    const reg = /\./g
-    reg.test(test.site)
-    let name = test.site.slice(7, reg.lastIndex - 1)
+    
+      const page = await browser.newPage();
+      const reg = /\./g
+    reg.test(site)
+    let name = site.slice(7, reg.lastIndex - 1)
 
 
     await page.setJavaScriptEnabled(true)
     data[name] = {}
-    await page.goto(test.site, {
+    await page.goto(site,  {timeout:50000,
       waitUntil: 'networkidle0'
     })
     await page.$$eval('a', divs => divs.length).then((x) => data[name].numb = x);
@@ -49,7 +50,7 @@ app.get('/', (req, res) => {
     data[name].imgSrc = `http://localhost:3000/${name}_with_JS.png`
 
     await page.setJavaScriptEnabled(false)
-    await page.goto(test.site, {
+    await page.goto(site, {
       waitUntil: 'networkidle0'
     })
     await page.$$eval('a', divs => divs.length).then((x) => data[name].numbWithoutJS = x);
@@ -60,12 +61,22 @@ app.get('/', (req, res) => {
     data[name].imgSrcWithoutJS = `http://localhost:3000/${name}_without_JS.png`
 
     await browser.close();
+    
+  }
+  // console.log(data)
 
-  })().then(() => JSON.stringify(data)).then(data => {
+  })()
+  .then(() => JSON.stringify(data)).then(data => {
 
     res.send(data)
-  });
+  })
+  // .catch(err => console.log(err));
+  
+})
 
+app.get('/test', (req, res) => {
+  let xx = JSON.stringify(data);
+  res.send(xx)
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

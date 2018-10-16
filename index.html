@@ -14,7 +14,7 @@
 
         }
         
-        fetch('http://localhost:3000?site=http://onet.pl').then(res => res.json()).then(data => {
+        fetch('http://localhost:3000/').then(res => res.json()).then(data => {
             x = data
             console.log(data)
             const img = document.createElement('img');
