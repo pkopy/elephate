@@ -7,7 +7,7 @@ class Details extends Component {
   
   render () {
     const {details} = this.props
-    console.log(details.name)
+    
     return(
       <div>
         <Header/>

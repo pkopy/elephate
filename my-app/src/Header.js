@@ -7,7 +7,7 @@ class Header extends Component {
     return (
       <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />   
-          <h1 className="header-text">PUPEETER AND REACT </h1> 
+          <h1 className="header-text">PUPPETEER AND REACT </h1> 
       </header>
     )
   }
