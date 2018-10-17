@@ -19,7 +19,7 @@ class Details extends Component {
           <img className="image" src={details.imgSrc} alt={details.name}></img>
           <img className="image" src={details.imgSrcWithoutJS} alt={details.name}></img>
         </div>
-        <Link className="close-new-note-button" to="/" >Close</Link>
+        <Link  to="/" ><div className="close-button"></div></Link>
       </div>
 
     )
