@@ -33,7 +33,7 @@ class Details extends Component {
                     {details.href.map((link, index) => 
                   
                       <tr key={index} >
-                      <td><a href={link}>{link.slice(0, 40)}...</a></td>
+                      <td><a href={link} target="_blank">{link.slice(0, 40)}...</a></td>
                       </tr>
                     )}
   
@@ -49,7 +49,7 @@ class Details extends Component {
                     {details.hrefWithoutJS.map((link, index) => 
                   
                       <tr key={index} >
-                      <td><a href={link}>{link.slice(0, 25)}...</a></td>
+                      <td><a href={link} target="_blank">{link.slice(0, 40)}...</a></td>
                       </tr>
                     )}
   

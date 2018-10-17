@@ -2,12 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const port = 3000
-const url = require('url')
-// const test = require('./example')
-// console.log(test.get())
-// let x = test.get()
-// x.then(res => res)
-// const x = test.test()
+
 
 const puppeteer = require('puppeteer');
 const sites = [
@@ -19,8 +14,7 @@ const sites = [
   "http://wp.pl"
 ]
 let data = []
-// const sites = ['http://wpengine.com']
-// 
+ 
 
 
 app.use(cors())
@@ -31,16 +25,12 @@ app.get('/', (req, res) => {
     
     for (let site of sites) {
       const browser = await puppeteer.launch()
-      
-
-
-
       const page = await browser.newPage();
+      
       const reg = /\./g
       reg.test(site)
       let name = site.slice(7, reg.lastIndex - 1)
 
-      
       await page.setJavaScriptEnabled(true)
       obj = {}
       obj.name = name;
@@ -69,20 +59,12 @@ app.get('/', (req, res) => {
       await browser.close();
 
     }
-    // console.log(data)
 
   })()
   .then(() => JSON.stringify(data)).then(data => {
-
     res.send(data)
   })
-  // .catch(err => console.log(err));
   
-})
-
-app.get('/test', (req, res) => {
-  let xx = JSON.stringify(data);
-  res.send(xx)
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
