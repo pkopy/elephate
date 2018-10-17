@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import './App.css';
 import Start from './Start';
@@ -35,6 +34,7 @@ class App extends Component {
     const {isLoad, data, details} = this.state;
     return (
       <div className="App">
+      
         <Route exact path="/" render={({history}) => (
           <Start
             isLoad={isLoad}
@@ -50,8 +50,8 @@ class App extends Component {
             details={details}
             // history={()=>history.push('/')}
           />
-          
         )}/>
+
       </div>
     );
   }

@@ -81,25 +81,8 @@
   font-size: 1.6em;
 }
 /*==== LOADER =====*/
-/* .loader {
-  animation: loader infinite 1s;
-  background: #617eb9;
-  width:30px;
-  height:30px;
-  position: relative;
-}
-
-@keyframes loader {
-  0%   { background: red;left:100px;}
-     
-    50%  { background: blue;left:200px;}
-    100%  { background: green;left:100px; }
-    
-} */
-
 
 .loader {
-  /* position: absolute; */
   margin-top: 2em;
   margin-left: auto;
   margin-right: auto;
@@ -109,12 +92,9 @@
   border: 1px solid;
   border: 5px dashed;
   border-radius: 50px;
-  /* -webkit-animation: spin 3s linear infinite; */
   animation: spin 5s linear infinite;
 }
-/* .spinner:after {
-  content: '◌';
-} */
+
 
 
 @keyframes spin {
@@ -155,6 +135,7 @@ li {
   width: 160px;
   padding: 10px;
 }
+
 .tab {
   width: 40%;
   display: inline-table;
