@@ -11,7 +11,7 @@ class Details extends Component {
     return(
       <div>
         <Header/>
-        
+
         {(details.name !== undefined)?(
           <div>
 
@@ -31,7 +31,7 @@ class Details extends Component {
                     {details.href.map((link, index) => 
                   
                       <tr key={index} >
-                      <td><a href={link} target="_blank">{link.slice(0, 40)}...</a></td>
+                      <td><a href={link} rel="noopener noreferrer" target="_blank">{link.slice(0, 40)}...</a></td>
                       </tr>
                     )}
   
@@ -47,7 +47,7 @@ class Details extends Component {
                     {details.hrefWithoutJS.map((link, index) => 
                   
                       <tr key={index} >
-                      <td><a href={link} target="_blank">{link.slice(0, 40)}...</a></td>
+                      <td><a href={link} rel="noopener noreferrer" target="_blank">{link.slice(0, 40)}...</a></td>
                       </tr>
                     )}
   
