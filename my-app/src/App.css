@@ -96,5 +96,33 @@
   100% { transform: rotate(360deg); }
 }
 
+/* === img ==== */
+
+.thumb {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+  box-shadow: 0px 1px 10px 0px #b7b1b1;
+}
+
+.thumb:hover {
+  cursor: pointer;
+}
+/* .image {
+  
+} */
+
+ol {
+  display: inline-flex;
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+li {
+  width: 160px;
+  padding: 10px;
+}
+
 
 

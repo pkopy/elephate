@@ -29,11 +29,7 @@ app.get('/', (req, res) => {
     
     for (let site of sites) {
       const browser = await puppeteer.launch()
-      //   {
-      //   ignoreHTTPSErrors: true,
-      //   args: ['--disable-setuid-sandbox', '--no-sandbox']
-      // })
-      let test = url.parse(req.url, true).query
+      
 
 
 
@@ -46,6 +42,7 @@ app.get('/', (req, res) => {
       await page.setJavaScriptEnabled(true)
       obj = {}
       obj.name = name;
+      obj.site = site;
       await page.goto(site, {
         timeout: 50000
       }).catch(err => console.log(err))
