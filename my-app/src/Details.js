@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import logo from './elephate-ico-gold.svg';
+import Header from './Header'
 
 class Details extends Component {
   
@@ -10,10 +10,8 @@ class Details extends Component {
     console.log(details.name)
     return(
       <div>
-        <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            
-        </header>
+        <Header/>
+        
         {(details.name !== undefined)?(
           <div>
 

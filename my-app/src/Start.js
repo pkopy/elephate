@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Loader from './Loader';
-import logo from './elephate-ico-gold.svg';
 import { Link } from 'react-router-dom';
+import Header from './Header'
 
 class Start extends Component {
   state = {
@@ -15,10 +15,9 @@ class Start extends Component {
     const {isLoad, data, getData, setDetails} = this.props;
     return(
       <div>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />    
-        </header>
         
+        <Header/>
+
         <div className="button" onClick={getData}>Get data</div>
 
         <Loader
