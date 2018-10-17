@@ -6,6 +6,7 @@ class Loader extends Component {
         return(
             <div>
                 {isLoad?<div/>:<div className="loader"></div>}
+                {/* {isLoad?<div/>:<div className="loader"></div>} */}
             </div>
         )
     }
