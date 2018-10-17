@@ -109,9 +109,13 @@
 .thumb:hover {
   cursor: pointer;
 }
-/* .image {
-  
-} */
+.image {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 40%;
+  box-shadow: 0px 1px 10px 0px #b7b1b1;
+}
 
 ol {
   display: inline-flex;

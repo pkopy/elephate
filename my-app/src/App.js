@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import logo from './elephate-ico-gold.svg';
+import { Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import './App.css';
-import Loader from './Loader'
+import Start from './Start';
+import Details from './Details';
 
 class App extends Component {
   state = {
     data: [],
     isLoad: true,
-    error:"We have error"
+    error:"We have error",
+    details:''
   }
 
   getData = () => {
@@ -17,32 +20,38 @@ class App extends Component {
     .then(dataRes => {
       this.setState({data:dataRes});
       this.setState({isLoad:true})
+      
     }).catch()
   }
+
+  setDetails = (site) => {
+    this.setState({details:site})
+  }
+
+  
   
   render() {
 
-    const {isLoad, data} = this.state;
+    const {isLoad, data, details} = this.state;
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          
-        </header>
-        <div className="button" onClick={this.getData}>Get data</div>
+        <Route exact path="/" render={({history}) => (
+          <Start
+            isLoad={isLoad}
+            data={data}
+            getData={this.getData}
+            setDetails={this.setDetails}
+            
+          /> 
+        )}/>
 
-        <Loader
-          isLoad = {isLoad}
-        />
-        <div>
-          <ol className="images">
-            {data.map((site) => 
-              <li key={site.name}>
-                <div className="image"><img className="thumb" src={site.imgSrc}></img>{site.name.toUpperCase()}</div>
-              </li>
-            )}
-          </ol>
-        </div>
+        <Route path="/details" render={({history}) =>(
+          <Details
+            details={details}
+            // history={()=>history.push('/')}
+          />
+          
+        )}/>
       </div>
     );
   }
