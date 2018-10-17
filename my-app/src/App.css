@@ -145,7 +145,7 @@
   box-shadow: 0px 1px 10px 0px #b7b1b1;
 }
 
-ol {
+ol.images{
   display: inline-flex;
   list-style-type: none;
   padding-inline-start: 0;
@@ -154,6 +154,11 @@ ol {
 li {
   width: 160px;
   padding: 10px;
+}
+.tab {
+  width: 40%;
+  display: inline-table;
+  padding: 1.5em;
 }
 
 

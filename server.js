@@ -10,12 +10,14 @@ const url = require('url')
 // const x = test.test()
 
 const puppeteer = require('puppeteer');
-const sites = ['http://wpengine.com', 
+const sites = [
+  'http://wpengine.com', 
   "http://angular.io", 
   "http://youtube.com", 
   "http://onet.pl", 
   "http://nytimes.com", 
-  "http://wp.pl"]
+  "http://wp.pl"
+]
 let data = []
 // const sites = ['http://wpengine.com']
 // 

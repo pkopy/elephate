@@ -29,7 +29,7 @@ class Start extends Component {
           <div>
             <ol className="images">
               {data.map((site) => 
-                <li key={site.name}>
+                <li key={site.name} className="li-start">
                   <div ><Link to="/details" onClick={()=>setDetails(site)}><img className="thumb" src={site.imgSrc}></img></Link>{site.name.toUpperCase()}</div>
                 </li>
               )}
