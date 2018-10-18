@@ -14,7 +14,7 @@ const sites = [
   "http://wp.pl"
 ]
 let data = []
- 
+ let count =0;
 
 
 app.use(cors())
@@ -41,9 +41,9 @@ app.get('/', (req, res) => {
       await page.$$eval('a', divs => divs.length).then(x => obj.numb = x);
       await page.$$eval('a', el => el.map(n => n.href)).then(x => obj.href = x)
       await page.screenshot({
-        path: `public/${name}_with_JS.png`
+        path: `public/${name}${count}_with_JS.png`
       });
-      obj.imgSrc = `http://localhost:3000/${name}_with_JS.png`
+      obj.imgSrc = `http://localhost:3000/${name}${count}_with_JS.png`
 
       await page.setJavaScriptEnabled(false)
       await page.goto(site, {
@@ -52,14 +52,14 @@ app.get('/', (req, res) => {
       await page.$$eval('a', divs => divs.length).then(x => obj.numbWithoutJS = x);
       await page.$$eval('a', el => el.map(n => n.href)).then(x => obj.hrefWithoutJS = x)
       await page.screenshot({
-        path: `public/${name}_without_JS.png`
+        path: `public/${name}${count}_without_JS.png`
       });
-      obj.imgSrcWithoutJS = `http://localhost:3000/${name}_without_JS.png`
+      obj.imgSrcWithoutJS = `http://localhost:3000/${name}${count}_without_JS.png`
       data.push(obj)
       await browser.close();
 
     }
-
+    count++
   })()
   .then(() => JSON.stringify(data)).then(data => {
     res.send(data)
