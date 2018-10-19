@@ -13,7 +13,8 @@ const sites = [
   "http://nytimes.com", 
   "http://wp.pl"
 ]
-let data = []
+let data = [];
+let len = {a: data.length};
  let count =0;
 
 
@@ -21,6 +22,7 @@ app.use(cors())
 app.use(express.static('public'))
 app.get('/', (req, res) => {
   data = [];
+
   (async () => {
     
     for (let site of sites) {
@@ -66,5 +68,10 @@ app.get('/', (req, res) => {
   })
   
 })
+
+app.get('/count', (req, res) => {
+   res.send(JSON.stringify(data.length))
+}
+)
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

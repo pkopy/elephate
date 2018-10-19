@@ -12,7 +12,8 @@ class Start extends Component {
 
   render() {
 
-    const {isLoad, data, getData, setDetails} = this.props;
+    const {isLoad, data, getData, setDetails, progress} = this.props;
+    
     return(
       <div>
         
@@ -22,9 +23,11 @@ class Start extends Component {
 
         <Loader
           isLoad = {isLoad}
+          progress = {progress}
         />
 
         <div>
+          
           <ol className="images">
             {data.map((site) => 
               <li key={site.name} className="li-start">
