@@ -13,7 +13,7 @@ class Start extends Component {
   render() {
 
     const {isLoad, data, getData, setDetails, progress} = this.props;
-    
+    let x = Math.floor(progress/6 * 100);
     return(
       <div>
         
@@ -25,7 +25,7 @@ class Start extends Component {
           isLoad = {isLoad}
           progress = {progress}
         />
-
+        
         <div>
           
           <ol className="images">

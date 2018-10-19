@@ -7,12 +7,12 @@ class Loader extends Component {
     }
     render () {
         const {isLoad, progress} = this.props
-        let x =progress/6 * 100;
+        let x = Math.floor(progress/6 * 100);
         return(
             <div>
-                <div><ol></ol></div>
                 
-                {isLoad?<div/>:<div>{x}<div className="loader"></div></div>}
+                
+                {isLoad?<div/>:(<div className="progressBar"><div className="progressBg" style={{'width':`${progress*30/6}em`}}></div><div className="progress-text"><b>{x} %</b></div></div>)}
                 {/* {isLoad?<div/>:<div className="loader"></div>} */}
             </div>
         )

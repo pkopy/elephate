@@ -103,6 +103,30 @@
   100% { transform: rotate(360deg); }
 }
 
+.progressBar {
+  width: 30em;
+  height: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #d6d5d5;
+  position: relative;
+  margin-top: 1em;
+}
+.progress-text {
+  margin: 0;
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  width: 30em;
+}
+.progressBg {
+  width: 3em;
+  height: 2em;
+  position: relative;
+  background-color: aqua;
+  transition-duration: 0.4s;
+}
+
 /* === img ==== */
 
 .thumb {
